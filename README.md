@@ -17,12 +17,11 @@ Se creó la función `actualizar_posicion_botella()` dentro del controlador. Est
 El desafío principal fue convertir las coordenadas locales de la "mano" del humanoide a coordenadas globales del mundo de Webots, ya que el humanoide cambia su posición y ángulo constantemente.
 
 ### A. Traslación (Posición de la Botella)
-Para ubicar la botella, se definió un **Offset** (distancia fija relativa al centro del humanoide). Sin embargo, si el humanoide rota, ese offset también debe rotar para mantener la posición relativa a la mano.
 
-1. **Definición del Offset Local:** Se estableció un vector con la distancia aproximada del centro del cuerpo a la mano:
+1. **Definición del Offset Local:**
    $$d_{local} = \begin{bmatrix} OFFSET\_X \\ OFFSET\_Y \\ OFFSET\_Z \end{bmatrix}$$
 
-2. **Cálculo en el Mundo:** Para hallar la posición global, multiplicamos la **Matriz de Rotación $R_z(\theta)$** del humanoide por el vector local y sumamos su posición actual ($P_{humanoide}$):
+2. **Cálculo en el Mundo:** Para hallar la posición global, multiplicamos la Matriz de Rotación $R_z(\theta)$ del humanoide por el vector local y sumamos su posición actual ($P_{humanoide}$):
    $$P_{botella} = P_{humanoide} + (R_z(\theta) \cdot d_{local})$$
 
 Donde la matriz de rotación en el eje Z es:
